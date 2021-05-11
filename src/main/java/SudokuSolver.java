@@ -14,7 +14,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Button;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
- 
+
 public class SudokuSolver extends Application {
   sudoku.SolutionFinder solutionFinder;
   TextField[][] squares = new TextField[9][9];
@@ -59,8 +59,19 @@ public class SudokuSolver extends Application {
             }
           }
         }
-        sudoku.Sudoku puzzle = new sudoku.Sudoku(nums);
-        solutionFinder = new sudoku.SolutionFinder(puzzle);
+
+        solutionFinder = new sudoku.SolutionFinder(nums);
+        int[][] solution = solutionFinder.findSolution();
+        if (solution != null){
+          for (int y = 0; y < 9; y++){
+            for (int x = 0; x < 9; x++){
+              System.out.print(solution[y][x]);
+            }
+            System.out.print("\n");
+          }
+          System.out.print("\n");
+          System.out.print("\n");
+        }
       }
     });
     gridPane.add(solvePuzzle, 0, 3);
